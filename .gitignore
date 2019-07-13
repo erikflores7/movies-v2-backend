@@ -1,0 +1,6 @@
+*.DS_Store
+/idea/*
+pom.xml
+MovieBackend.iml
+target/
+.idea/
