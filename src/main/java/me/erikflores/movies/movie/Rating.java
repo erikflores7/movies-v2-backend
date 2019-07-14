@@ -3,13 +3,13 @@ package me.erikflores.movies.movie;
 public class Rating {
 
     private double imdb;
-    private int metacritic;
-    private int rottenTomates;
+    private int metaCritic;
+    private int rottenTomatoes;
 
-    private Rating(double imdb, int metacritic, int rottenTomates){
+    private Rating(double imdb, int metaCritic, int rottenTomatoes){
         this.imdb = imdb;
-        this.metacritic = metacritic;
-        this.rottenTomates = rottenTomates;
+        this.metaCritic = metaCritic;
+        this.rottenTomatoes = rottenTomatoes;
     }
 
     public double getIMDB(){
@@ -17,20 +17,20 @@ public class Rating {
     }
 
     public int getMetacritic(){
-        return metacritic;
+        return metaCritic;
     }
 
-    public int getRottenTomates(){
-        return rottenTomates;
+    public int getRottenTomatoes(){
+        return rottenTomatoes;
     }
     public static class builder{
 
         private double imdb;
-        private int metacritic;
-        private int rottingTomates;
+        private int metaCritic;
+        private int rottenTomatoes;
 
         public Rating build(){
-            return new Rating(imdb, metacritic, rottingTomates);
+            return new Rating(imdb, metaCritic, rottenTomatoes);
         }
 
         public builder withIMDB(double rating){
@@ -39,12 +39,12 @@ public class Rating {
         }
 
         public builder withMetaCritic(int rating){
-            this.metacritic = rating;
+            this.metaCritic = rating;
             return this;
         }
 
         public builder withRottenTomatoes(int rating){
-            this.rottingTomates = rating;
+            this.rottenTomatoes = rating;
             return this;
         }
 
