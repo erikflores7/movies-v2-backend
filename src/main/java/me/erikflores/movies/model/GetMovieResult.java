@@ -2,20 +2,17 @@ package me.erikflores.movies.model;
 
 import me.erikflores.movies.movie.Movie;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GetMovieResult {
 
-    private List<Movie> movie;
+    private Movie movie;
 
     public GetMovieResult(){}
 
-    private GetMovieResult(List<Movie> movie){
+    private GetMovieResult(Movie movie){
         this.movie = movie;
     }
 
-    public List<Movie> getMovies(){
+    public Movie getMovie(){
         return this.movie;
     }
 
@@ -25,15 +22,15 @@ public class GetMovieResult {
 
     public static class GetMovieResultBuilder{
 
-        List<Movie> movieList = new ArrayList<>();
+        Movie movie;
 
         public GetMovieResultBuilder withMovie(Movie movie){
-            movieList.add(movie);
+            this.movie = movie;
             return this;
         }
 
         public GetMovieResult build(){
-            return new GetMovieResult(movieList);
+            return new GetMovieResult(movie);
         }
     }
 

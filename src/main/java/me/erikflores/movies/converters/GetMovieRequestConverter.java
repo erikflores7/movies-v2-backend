@@ -10,7 +10,8 @@ public class GetMovieRequestConverter implements Converter<String, GetMovieReque
     @Override
     public GetMovieRequest convert(String from){
         String[] data = from.split(",");
-        return new GetMovieRequest(data[0], data[1], Integer.parseInt(data[2]));
+        //return new GetMovieRequest(data[0], data[1], Integer.parseInt(data[2]));
+        return null;
     }
 
 }

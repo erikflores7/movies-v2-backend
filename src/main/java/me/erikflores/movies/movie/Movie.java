@@ -1,5 +1,7 @@
 package me.erikflores.movies.movie;
 
+import me.erikflores.movies.sql.SQLMovieUpdate;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -7,27 +9,32 @@ public class Movie {
 
     private String id;
     private String title;
+    private String oldReleaseDate;
     private Date releaseDate;
     //private List<Genre> genres;
     private Rating rating;
-    private Date blurayReleaseDate;
+    private String oldPostReleaseDate;
+    private Date postReleaseDate;
     private int runTime;
     private String posterURL;
-    private boolean isUpcoming;
-    private boolean isLatest;
     private String summary;
 
-    private Movie(String id, String title, Date releaseDate, Rating rating, Date blurayReleaseDate,
+    private Movie(String id, String title, Date releaseDate, String oldReleaseDate, Rating rating, String oldPostReleaseDate,
                   int runTime, String posterURL, String summary){
         this.id = id;
         this.title = title;
         this.releaseDate = releaseDate;
+        this.oldReleaseDate = oldReleaseDate;
+        this.oldPostReleaseDate = oldPostReleaseDate;
         //this.genres = genre;
         this.rating = rating;
-        this.blurayReleaseDate = blurayReleaseDate;
         this.runTime = runTime;
         this.posterURL = posterURL;
         this.summary = summary;
+
+        if(this.releaseDate == null || this.oldReleaseDate.equals("")){
+            SQLMovieUpdate.addUpdatedDate(this);
+        }
         // TODO: Calculate upcoming/latest
     }
 
@@ -43,12 +50,16 @@ public class Movie {
         return this.releaseDate;
     }
 
+    public String getOldReleaseDate(){
+        return this.oldReleaseDate;
+    }
+
     public Rating getRating(){
         return this.rating;
     }
 
-    public Date getBlurayReleaseDate(){
-        return this.blurayReleaseDate;
+    public String getOldPostReleaseDate(){
+        return this.oldPostReleaseDate;
     }
 
     public int getRunTime(){
@@ -71,10 +82,12 @@ public class Movie {
 
         private String id;
         private String title;
+        private String oldReleaseDate;
         private Date releaseDate;
-        private List<Genre> genres;
+        //private List<Genre> genres;
         private Rating rating;
-        private Date blurayReleaseDate;
+        private String oldPostReleaseDate;
+        private Date postReleaseDate;
         private int runTime;
         private String posterURL;
         private String summary;
@@ -94,8 +107,12 @@ public class Movie {
             return this;
         }
 
+        public MovieBuilder withOldReleaseDate(String oldReleaseDate){
+            this.oldReleaseDate = oldReleaseDate;
+            return this;
+        }
         public MovieBuilder withGenres(List<Genre> genres){
-            this.genres = genres;
+            //this.genres = genres;
             return this;
         }
 
@@ -104,8 +121,8 @@ public class Movie {
             return this;
         }
 
-        public MovieBuilder withBlueRayReleaseDate(Date releaseDate){
-            this.blurayReleaseDate = releaseDate;
+        public MovieBuilder withOldPostReleaseDate(String releaseDate){
+            this.oldPostReleaseDate = releaseDate;
             return this;
         }
 
@@ -125,7 +142,7 @@ public class Movie {
         }
 
         public Movie build(){
-            return new Movie(id, title, releaseDate, rating, blurayReleaseDate, runTime, posterURL, summary);
+            return new Movie(id, title, releaseDate, oldReleaseDate, rating, oldPostReleaseDate, runTime, posterURL, summary);
         }
     }
 }

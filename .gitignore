@@ -6,6 +6,9 @@ MovieBackend.iml
 target/
 .idea/
 /resources/DATABASE.properties
+/resources/application.properties
+resources/*
+
 =======
 # Compiled class file
 *.class

@@ -14,13 +14,14 @@ public class ResultSetToMovieListConverter{
         List<Movie> movieList = new ArrayList<>();
         while(resultSet.next()){
             MovieBuilder builder = Movie.builder();
-            builder.withId(resultSet.getString("id"));
-            builder.withTitle(resultSet.getString("title"));
-            builder.withReleaseDate(resultSet.getDate("release_date"));
-            builder.withBlueRayReleaseDate(resultSet.getDate("dvd_release"));
-            //builder.withRunTime(resultSet.getInt("runtime"));
-            builder.withPosterURL(resultSet.getString("poster"));
-            builder.withSummary(resultSet.getString("summary"));
+            builder.withId(resultSet.getString("id"))
+                    .withTitle(resultSet.getString("title"))
+                    .withReleaseDate(resultSet.getDate("releaseDate"))
+                    .withOldReleaseDate(resultSet.getString("release_date"))
+                    .withOldPostReleaseDate(resultSet.getString("dvd_release"))
+                    /*.withRunTime(resultSet.getInt("runtime"))*/
+                    .withPosterURL(resultSet.getString("poster"))
+                    .withSummary(resultSet.getString("summary"));
             movieList.add(builder.build());
         }
         return movieList;
